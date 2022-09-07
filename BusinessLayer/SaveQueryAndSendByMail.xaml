@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Activity mc:Ignorable="sap sap2010" x:Class="SaveQueryAndSendByMail" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_transactionItem" Type="InArgument(ui:QueueItem)" />
@@ -85,7 +86,7 @@
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="752.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Starting SaveQueryAndSendByMail&quot;]" />
     <If Condition="[String.IsNullOrEmpty(in_strSearchString)]" DisplayName="If search string is empty // no transaction items left" sap:VirtualizedContainerService.HintSize="752.8,826.4" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Search string is empty, query not performed and mail not sent.&quot;]" />
+        <ui:LogMessage DisplayName="Log Message - search string is empty" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[in_config(&quot;strStringEmpty&quot;).ToString]" />
       </If.Then>
       <If.Else>
         <Sequence DisplayName="Execute query, save to excel and send" sap:VirtualizedContainerService.HintSize="375.2,667.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
@@ -97,43 +98,32 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SelectJoinedTables workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ServiceLayer\SQL\SelectJoinedTables.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SelectJoinedTables workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ServicesLayer\SQL\SelectJoinedTables.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dtQueryResult">[dtQueryResult]</OutArgument>
               <InArgument x:TypeArguments="x:String" x:Key="in_strSearchString">[in_strSearchString]</InArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_config">[in_config]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke WriteTableToExcel workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="ServiceLayer\WriteTableToExcel.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke WriteTableToExcel workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="ServicesLayer\WriteTableToExcel.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtQueryResult">
-                <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dtQueryResult" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strSearchString">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strSearchString" />
-              </InArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="out_strMessage">
-                <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="strMessage" />
-              </OutArgument>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtQueryResult">[dtQueryResult]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strSearchString">[in_strSearchString]</InArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strMessage">[strMessage]</OutArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_config">[in_config]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SendFileByEmail workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="ServiceLayer\SendFileByEmail.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SendFileByEmail workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="ServicesLayer\SendFileByEmail.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strSearchString">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strSearchString" />
-              </InArgument>
-              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_config">
-                <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_config" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strMessage">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strMessage" />
-              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strSearchString">[in_strSearchString]</InArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_config">[in_config]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strMessage">[strMessage]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke DeleteExcelFile workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="ServiceLayer\DeleteExcelFile.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke DeleteExcelFile workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="DataLayer\DeleteExcelFile.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="x:String" x:Key="in_strSearchString">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strSearchString" />
-              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strSearchString">[in_strSearchString]</InArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_config">[in_config]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
         </Sequence>

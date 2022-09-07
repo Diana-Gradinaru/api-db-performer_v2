@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="TestCase_WriteTableToExcel" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="865.6,1664" sap2010:WorkflowViewState.IdRef="TestCase_WriteTableToExcel_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uta="clr-namespace:UiPath.Testing.Activities;assembly=UiPath.Testing.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="TestCase_WriteTableToExcel" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="865.6,1664" sap2010:WorkflowViewState.IdRef="TestCase_WriteTableToExcel_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uta="clr-namespace:UiPath.Testing.Activities;assembly=UiPath.Testing.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="52">
+    <scg:List x:TypeArguments="x:String" Capacity="29">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -33,7 +33,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <sco:Collection x:TypeArguments="AssemblyReference">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="34">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -67,7 +67,8 @@
       <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
-    </sco:Collection>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="Testing wf WriteTableToExcel" DisplayName="TestCase_WriteTableToExcel" sap:VirtualizedContainerService.HintSize="616.8,1599.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
@@ -111,23 +112,43 @@
           <InArgument x:TypeArguments="x:String">[transactionItem.SpecificContent("SearchString").ToString]</InArgument>
         </Assign.Value>
       </Assign>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SelectJoinedTables workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="ServiceLayer\SQL\SelectJoinedTables.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SelectJoinedTables workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="ServicesLayer\SQL\SelectJoinedTables.xaml">
         <ui:InvokeWorkflowFile.Arguments>
-          <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dtQueryResult">[dtQueryResult]</OutArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="in_strSearchString">[strSearchString]</InArgument>
+          <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dtQueryResult">
+            <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="dtQueryResult" />
+          </OutArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_strSearchString">
+            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strSearchString" />
+          </InArgument>
+          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_config">
+            <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="config" />
+          </InArgument>
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
     </Sequence>
     <Sequence DisplayName="... When" sap:VirtualizedContainerService.HintSize="575.2,206.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="strMessage" />
+      </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke WriteTableToExcel workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ServiceLayer\WriteTableToExcel.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke WriteTableToExcel workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ServicesLayer\WriteTableToExcel.xaml">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtQueryResult">[dtQueryResult]</InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="in_strSearchString">[transactionItem.SpecificContent("SearchString").ToString]</InArgument>
+          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtQueryResult">
+            <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dtQueryResult" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_strSearchString">
+            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="transactionItem.SpecificContent(&quot;SearchString&quot;).ToString" />
+          </InArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_strMessage">
+            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="strMessage" />
+          </OutArgument>
+          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_config">
+            <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="config" />
+          </InArgument>
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
     </Sequence>
@@ -140,7 +161,7 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:FileExistsX DisplayName="Check if File was saved" Exists="[booleanFileExists]" sap:VirtualizedContainerService.HintSize="533.6,134.4" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[&quot;Data\Output\MovieWithTitle_&quot; + strSearchString + &quot;.xlsx&quot;]" />
+      <ui:FileExistsX DisplayName="Check if File was saved" Exists="[booleanFileExists]" sap:VirtualizedContainerService.HintSize="533.6,134.4" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[String.Format(config(&quot;strFilePath&quot;).ToString, strSearchString)]" />
       <uta:VerifyExpression AlternativeVerificationTitle="{x:Null}" KeepScreenshots="{x:Null}" OutputMessageFormat="{x:Null}" Result="{x:Null}" ScreenshotsPath="{x:Null}" ContinueOnFailure="True" DisplayName="Verify if file exists" Expression="[booleanFileExists = True]" sap:VirtualizedContainerService.HintSize="533.6,62.4" sap2010:WorkflowViewState.IdRef="VerifyExpression_1" TakeScreenshotInCaseOfFailingAssertion="False" TakeScreenshotInCaseOfSucceedingAssertion="False" />
     </Sequence>
   </Sequence>

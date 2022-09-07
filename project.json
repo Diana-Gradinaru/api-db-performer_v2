@@ -1,6 +1,6 @@
 {
-  "name": "APIs_and_db_Performer",
-  "description": "The Performer component of the APIs_and_db process.",
+  "name": "api-and-db-performer",
+  "description": "Retrieves cast of movies in queue, send them by mail to user.",
   "main": "Main.xaml",
   "dependencies": {
     "UiPath.Database.Activities": "[1.6.1]",
@@ -15,7 +15,7 @@
   "entitiesStores": [],
   "schemaVersion": "4.0",
   "studioVersion": "22.4.4.0",
-  "projectVersion": "1.0.0",
+  "projectVersion": "1.0.1",
   "runtimeOptions": {
     "autoDispose": false,
     "netFrameworkLazyLoading": false,
@@ -115,12 +115,6 @@
         "testCaseId": "36c8b817-7088-4810-825c-47d99e8cea0f",
         "testCaseType": "TestCase",
         "fileName": "Tests\\ServiceLayer\\TvMazeApi\\TestCase_CallActorsApi.xaml"
-      },
-      {
-        "editingStatus": "InProgress",
-        "testCaseId": "3c8f6750-b4c5-4bdd-8e8c-fcf97e2240c3",
-        "testCaseType": "TestCase",
-        "fileName": "Tests\\ServiceLayer\\TvMazeApi\\TestCase_DeserializeResponse.xaml"
       },
       {
         "editingStatus": "InProgress",

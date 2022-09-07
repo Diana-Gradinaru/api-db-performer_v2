@@ -83,6 +83,7 @@
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:QueueItem" Name="transactionItem" />
       <Variable x:TypeArguments="x:Int32" Name="intInitialRows" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="config" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -93,7 +94,6 @@
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="575.2,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Starting TestCase_AddMoviesToDatabase&quot;]" />
     <Sequence DisplayName="... Given" sap:VirtualizedContainerService.HintSize="575.2,702.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
-        <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="config" />
         <Variable x:TypeArguments="sd:DataTable" Name="dtTest" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
@@ -135,9 +135,14 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddMoviesToDatabase workflow" sap:VirtualizedContainerService.HintSize="352,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ServiceLayer\SQL\AddMoviesToDatabase.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddMoviesToDatabase workflow" sap:VirtualizedContainerService.HintSize="356.8,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ServicesLayer\SQL\AddMoviesToDatabase.xaml">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_transactionItem">[transactionItem]</InArgument>
+          <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_transactionItem">
+            <mva:VisualBasicValue x:TypeArguments="ui:QueueItem" ExpressionText="transactionItem" />
+          </InArgument>
+          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_config">
+            <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="config" />
+          </InArgument>
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
     </Sequence>
