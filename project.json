@@ -1,0 +1,153 @@
+{
+  "name": "api-and-db-performer",
+  "description": "Retrieves cast of movies in queue, send them by mail to user.",
+  "main": "Main.xaml",
+  "dependencies": {
+    "UiPath.Database.Activities": "[1.6.1]",
+    "UiPath.Excel.Activities": "[2.12.3]",
+    "UiPath.Mail.Activities": "[1.15.2]",
+    "UiPath.System.Activities": "[22.4.4]",
+    "UiPath.Testing.Activities": "[22.4.3]",
+    "UiPath.UIAutomation.Activities": "[22.4.7]",
+    "UiPath.WebAPI.Activities": "[1.11.1]"
+  },
+  "webServices": [],
+  "entitiesStores": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "22.4.4.0",
+  "projectVersion": "1.0.1",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "netFrameworkLazyLoading": false,
+    "isPausable": true,
+    "isAttended": false,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow",
+    "readyForPiP": false,
+    "startsInPiP": false,
+    "mustRestoreAllDependencies": true
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "processOptions": {
+      "ignoredFiles": []
+    },
+    "fileInfoCollection": [
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "cb9a5868-413e-4c10-b10d-ee8f28e4ebdd",
+        "dataVariationFilePath": ".variations\\Tests_Tests.json",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\GeneralTestCase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "11d73787-3c41-4487-8ce5-eb70ecc1b42f",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\GetTransactionDataTestCase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "e4178445-a6e2-47c5-8b73-045dcc9ea65c",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\InitAllApplicationsTestCase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "61eea785-d60e-4583-8f92-b62c0a8fa7b6",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\InitAllSettingsTestCase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "9a679e5b-87a0-47d8-a544-042c3319b8e0",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\MainTestCase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "bcfc07b3-2e1e-4cd3-bdad-e247792dc040",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\ProcessTestCase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "50ee17d5-bccf-4a56-a78f-a67e9f10ffc6",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\WorkflowTestCaseTemplate.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "8fa865ac-c9a3-4525-80a9-ad2fe2b22612",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\BusinessLayer\\TestCase_SaveQueryAndSendByMail.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "268b557c-4a3d-47fc-a794-3a17c9c20674",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\ServiceLayer\\SQL\\TestCase_AddActorsToDatabase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "900cade2-3527-49df-af45-4e6db4421b42",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\ServiceLayer\\SQL\\TestCase_AddMoviesToDatabase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "76ac59ce-a87f-4ab0-96b0-ec903337f72d",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\ServiceLayer\\SQL\\TestCase_SelectJoinedTables.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "36c8b817-7088-4810-825c-47d99e8cea0f",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\ServiceLayer\\TvMazeApi\\TestCase_CallActorsApi.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "a54e0597-2580-4c5c-9219-24a342c2f6de",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\ServiceLayer\\TestCase_SendFileByEmail.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "9b713ef5-ad02-406e-ba1f-d4adf8e67c4b",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\ServiceLayer\\TestCase_WriteTableToExcel.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "3338e2d5-dc29-4145-8314-91967202e543",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\ServiceLayer\\TestCase_DeleteExcelFile.xaml"
+      }
+    ],
+    "modernBehavior": true
+  },
+  "expressionLanguage": "VisualBasic",
+  "entryPoints": [
+    {
+      "filePath": "Main.xaml",
+      "uniqueId": "2dee8f4a-51c9-4efc-a0f5-a00450e80128",
+      "input": [],
+      "output": []
+    }
+  ],
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {},
+  "targetFramework": "Legacy"
+}
